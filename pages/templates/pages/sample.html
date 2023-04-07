@@ -1,0 +1,26 @@
+{%extends 'core/base.html'%}
+{%load static%}
+
+{%block content%}
+    <section class="page-section about-heading">
+      <div class="container">
+        <div class="about-heading-content mbtm">
+          <div class="row">
+            <div class="col-xl-9 col-lg-10 mx-auto">
+              <div class="bg-faded rounded p-5 forced">
+                <h2 class="section-heading mb-4">
+                  <span class="section-heading-lower">{{page.title}}</span>
+                </h2>
+                <div class="section-content">
+                    {{page.content|safe}}               <!--safe permite leer las entradas del contenido de page de modo seguro mostrando en texto en vez de html-->
+                    {% if user.is_authenticated %}      <!--se confirma la autenticaciòn del usuario-->
+                      <p><a href="{% url 'admin:pages_page_change' page.id %}" > Edita el usuario {{user}} </a></p> <!--se puede editar desde la pagina web y se direccionar al admin-->
+                    {% endif %}                    
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+{%endblock%}
